@@ -41,4 +41,16 @@ public class ProductService {
 
         return new ProductDTO(entity);
     }
+
+    @Transactional
+    public ProductDTO modify(Long id, ProductDTO productDTO) {
+        Product entity = new Product();
+        entity.setName(productDTO.getName());
+        entity.setDescription(productDTO.getDescription());
+        entity.setPrice(productDTO.getPrice());
+        entity.setImgUrl(productDTO.getImgUrl());
+        entity = productRepository.save(entity);
+
+        return new ProductDTO(entity);
+    }
 }
