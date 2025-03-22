@@ -1,6 +1,7 @@
 package com.example.dscommerce.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,9 +15,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Campo não pode ser nulo")
+    @Size(min = 3, max = 80, message = "O campo tem que ter mínimo de 3 caracteres e máximo de 80")
     private String name;
     @Column(columnDefinition = "TEXT")
+    @Size(min = 10, message = "O campo não pode ter menos de 10 caracteres")
     private String description;
+    @Positive(message = "O preço tem que ser positivo")
     private Double price;
     private String imgUrl;
 
